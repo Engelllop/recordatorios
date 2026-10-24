@@ -1,0 +1,55 @@
+name: Recordatorios por Telegram
+
+on:
+  schedule:
+    # Cada 5 minutos (UTC). El script decide qué toca según la hora de Costa Rica.
+    # Repo PÚBLICO: los minutos de Actions son ilimitados y el cron puede ser fino.
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+    inputs:
+      prueba:
+        description: "Solo mandar un mensaje de prueba"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: recordatorios
+  cancel-in-progress: false
+
+jobs:
+  enviar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Enviar recordatorios
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          PYTHONIOENCODING: utf-8
+        run: |
+          if [ "${{ inputs.prueba }}" = "true" ]; then
+            python reminders.py --test
+          else
+            python reminders.py
+          fi
+
+      - name: Guardar estado (evita avisos repetidos)
+        run: |
+          if [ -n "$(git status --porcelain sent_state.json)" ]; then
+            git config user.name "bot-recordatorios"
+            git config user.email "actions@users.noreply.github.com"
+            git add sent_state.json
+            git commit -m "estado: recordatorios enviados"
+            git push
+          fi

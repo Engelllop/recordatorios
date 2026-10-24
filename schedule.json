@@ -1,0 +1,230 @@
+{
+  "timezone": "America/Costa_Rica",
+  "reminders": [
+    {
+      "id": "fuerza-domingo",
+      "text": "🏋️ Fuerza en casa — Sesión A o B (25–35 min). Calentamiento 4 min incluido.",
+      "type": "weekly",
+      "days": ["sun"],
+      "time": "05:00",
+      "lead_minutes": 0,
+      "active": true
+    },
+    {
+      "id": "fuerza-martes",
+      "text": "🏋️ Fuerza en casa — Sesión A o B (25–35 min).",
+      "type": "weekly",
+      "days": ["tue"],
+      "time": "05:00",
+      "lead_minutes": 0,
+      "active": true
+    },
+    {
+      "id": "fuerza-jueves",
+      "text": "🏋️ Fuerza en casa + 10 min de caminata al final (25–35 min).",
+      "type": "weekly",
+      "days": ["thu"],
+      "time": "05:00",
+      "lead_minutes": 0,
+      "active": true
+    },
+    {
+      "id": "caminata-lunes",
+      "text": "🚶 Caminata rápida 20–30 min (podés hablar en frases, no cantar).",
+      "type": "weekly",
+      "days": ["mon"],
+      "time": "05:00",
+      "lead_minutes": 0,
+      "active": true
+    },
+    {
+      "id": "caminata-miercoles",
+      "text": "🚶 Caminata rápida 20–30 min + 5 min de movilidad suave.",
+      "type": "weekly",
+      "days": ["wed"],
+      "time": "05:00",
+      "lead_minutes": 0,
+      "active": true
+    },
+    {
+      "id": "ingles-domingo",
+      "text": "🇬🇧 Inglés 20 min — Bloque P: shadowing + escucha + un sonido (/θ/, /ð/, /ɪ–iː/, /æ/, /r/).",
+      "type": "weekly",
+      "days": ["sun"],
+      "time": "17:30",
+      "lead_minutes": 0,
+      "active": true
+    },
+    {
+      "id": "ingles-lunes",
+      "text": "🇬🇧 Inglés 20 min — Bloque E: leer 5 min, escribir 100–150 palabras, corregir con Grammarly.",
+      "type": "weekly",
+      "days": ["mon"],
+      "time": "17:30",
+      "lead_minutes": 0,
+      "active": true
+    },
+    {
+      "id": "ingles-martes",
+      "text": "🇬🇧 Inglés 20 min — Bloque P: shadowing + escucha con subs en inglés.",
+      "type": "weekly",
+      "days": ["tue"],
+      "time": "17:30",
+      "lead_minutes": 0,
+      "active": true
+    },
+    {
+      "id": "ingles-miercoles",
+      "text": "🇬🇧 Inglés 20 min — Bloque E: escritura + corrección del error más repetido.",
+      "type": "weekly",
+      "days": ["wed"],
+      "time": "17:30",
+      "lead_minutes": 0,
+      "active": true
+    },
+    {
+      "id": "ingles-jueves",
+      "text": "🇬🇧 Inglés 20 min — Bloque M (mixto): repasar, escribir 60–80 palabras y explicarlo en voz alta.",
+      "type": "weekly",
+      "days": ["thu"],
+      "time": "17:30",
+      "lead_minutes": 0,
+      "active": true
+    },
+    {
+      "id": "pago-tarjeta-titular",
+      "text": "💳 BAC-USD: cargo fijo de la tarjeta titular (día 4). Verificá que entró.",
+      "type": "monthly",
+      "day": 4,
+      "time": "08:00",
+      "lead_minutes": 0,
+      "active": true
+    },
+    {
+      "id": "corte-visa-bcr",
+      "text": "✂️ Corte de la Visa BCR (día 6). Bajá el export de movimientos y actualizá finanzas/vencimientos.md.",
+      "type": "monthly",
+      "day": 6,
+      "time": "08:00",
+      "lead_minutes": 0,
+      "active": true
+    },
+    {
+      "id": "pago-claro",
+      "text": "📱 Claro postpago — verificá que se cobró (día 7).",
+      "type": "monthly",
+      "day": 7,
+      "time": "08:00",
+      "lead_minutes": 0,
+      "active": true
+    },
+    {
+      "id": "corte-bac-master",
+      "text": "✂️ Corte de la BAC Master (día 14). Cerrá el consumo del ciclo y guardá las notificaciones.",
+      "type": "monthly",
+      "day": 14,
+      "time": "08:00",
+      "lead_minutes": 0,
+      "active": true
+    },
+    {
+      "id": "dia-15-pagos",
+      "text": "💰 Día 15: planilla y RAMOS → mover los $800 al ahorro · separar el alquiler · SINPE del corte 14 · cuota del préstamo · cobro pendiente. Montos y detalle en finanzas/vencimientos.md.",
+      "type": "monthly",
+      "day": 15,
+      "time": "07:30",
+      "lead_minutes": 0,
+      "active": true
+    },
+    {
+      "id": "pago-visa-contado",
+      "text": "🧾 Visa BCR: pago de contado del corte — vence hoy. Monto en finanzas/vencimientos.md.",
+      "type": "monthly",
+      "day": 21,
+      "time": "08:00",
+      "lead_minutes": 0,
+      "active": true
+    },
+    {
+      "id": "dia-30-quincena",
+      "text": "💰 Día 30: segunda quincena — barrer el excedente del variable al fondo.",
+      "type": "monthly",
+      "day": 30,
+      "time": "08:00",
+      "lead_minutes": 0,
+      "active": true
+    },
+    {
+      "id": "cierre-mes",
+      "text": "📊 Último día del mes: anotá el gasto variable en la hoja Gastos y compará contra los topes.",
+      "type": "monthly",
+      "day": -1,
+      "time": "20:00",
+      "lead_minutes": 0,
+      "active": true
+    },
+    {
+      "id": "revision-semanal",
+      "text": "🧠 Revisión semanal: actualizá finanzas/vencimientos.md, CONTEXT.md y SESSION.md. Lo que se olvida no existe.",
+      "type": "weekly",
+      "days": ["sun"],
+      "time": "20:00",
+      "lead_minutes": 0,
+      "active": true
+    },
+    {
+      "id": "pendientes-octubre",
+      "text": "⚠️ PENDIENTES SIN REGISTRO:\n• pago de la Visa del corte 10/06 (venció 10/21)\n• corte y pago de la BAC Master (14 y 15/10)\n• cuota del préstamo (1 de 24)\n• cobro pendiente a un familiar\nRevisá finanzas/vencimientos.md y marcá lo que ya se pagó.",
+      "type": "once",
+      "date": "2026-10-24",
+      "time": "09:00",
+      "lead_minutes": 0,
+      "active": true
+    },
+    {
+      "id": "uned-matricula-diciembre",
+      "text": "🎓 UNED: revisá la ventana de matrícula del I cuatri 2027 (~enero) y los requisitos (balance positivo 3 meses, Visa < ₡400k, fondo ₡300k).",
+      "type": "once",
+      "date": "2026-12-01",
+      "time": "09:00",
+      "lead_minutes": 0,
+      "active": true
+    },
+    {
+      "id": "diciembre-cierres",
+      "text": "💵 Diciembre: devolución del préstamo familiar y cierre de la bolsa Viaje. Actualizá Cobros y finanzas/README.md.",
+      "type": "once",
+      "date": "2026-12-01",
+      "time": "19:00",
+      "lead_minutes": 0,
+      "active": true
+    },
+    {
+      "id": "cumple-diciembre",
+      "text": "🎂 Cumpleaños de diciembre — coordinar regalo.",
+      "type": "once",
+      "date": "2026-12-03",
+      "time": "09:00",
+      "lead_minutes": 0,
+      "active": true
+    },
+    {
+      "id": "cumple-enero",
+      "text": "🎂 Cumpleaños de enero — coordinar regalo.",
+      "type": "once",
+      "date": "2027-01-01",
+      "time": "09:00",
+      "lead_minutes": 0,
+      "active": true
+    },
+    {
+      "id": "cumple-octubre",
+      "text": "🎂 Cumpleaños de octubre — coordinar regalo.",
+      "type": "once",
+      "date": "2027-10-02",
+      "time": "09:00",
+      "lead_minutes": 0,
+      "active": true
+    }
+  ]
+}
