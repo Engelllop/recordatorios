@@ -21,6 +21,8 @@ const TZ = 'America/Costa_Rica';
 const WINDOW_MIN = 45;      // minutos de tolerancia si un trigger se demora
 const STATE_KEY = 'sent_state';
 const STATE_DAYS = 10;      // cuánto se recuerda lo enviado (Properties tiene 9 KB por valor)
+// Estado que commitea el workflow de GitHub: se mergea para no duplicar avisos.
+const STATE_URL = 'https://raw.githubusercontent.com/Engelllop/recordatorios/master/sent_state.json';
 
 const WD = { sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6 };
 const WD_ES = ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'];
@@ -80,8 +82,39 @@ function occurrences(rem, p) {
 }
 
 function formatWhen(ms) {
-  var p = localParts(ms);
-  return WD_ES[p.wd] + ' ' + pad(p.d) + ' ' + MO_ES[p.m - 1] + ' ' + pad(p.hh) + ':' + pad(p.mm);
+  // ms es "pseudo-ms": la hora de pared codificada como UTC, así que se lee en UTC.
+  var d = new Date(ms);
+  return WD_ES[d.getUTCDay()] + ' ' + pad(d.getUTCDate()) + ' ' + MO_ES[d.getUTCMonth()] +
+         ' ' + pad(d.getUTCHours()) + ':' + pad(d.getUTCMinutes());
+}
+
+/** Offset real de la zona en ese instante (Costa Rica = -6h, sin horario de verano). */
+function tzOffsetMs_(ms) {
+  var s = Utilities.formatDate(new Date(ms), TZ, 'yyyy-MM-dd HH:mm');
+  return Date.parse(s.replace(' ', 'T') + ':00Z') - ms;
+}
+
+/** Mismo formato de clave que reminders.py: "id|2026-10-25T11:00:00+00:00". */
+function isoUtc(pseudoMs_) {
+  var real = pseudoMs_ - tzOffsetMs_(pseudoMs_);
+  return new Date(real).toISOString().replace('.000Z', '+00:00');
+}
+
+/** Estado enviado por el workflow de GitHub (público, sin auth). */
+function estadoRemoto_() {
+  try {
+    var r = UrlFetchApp.fetch(STATE_URL + '?t=' + Date.now(), { muteHttpExceptions: true });
+    if (r.getResponseCode() !== 200) return {};
+    var obj = JSON.parse(r.getContentText());
+    var out = {};
+    Object.keys(obj).forEach(function (k) {
+      var t = Date.parse(obj[k]);
+      if (!isNaN(t)) out[k] = t;
+    });
+    return out;
+  } catch (e) {
+    return {};
+  }
 }
 
 function cargarEstado_() {
@@ -136,7 +169,7 @@ function enviar() {
     var ahora = pseudoMs(ahoraP);
     var ayerP = localParts(ahora - 86400000);
 
-    var estado = cargarEstado_();
+    var estado = Object.assign({}, estadoRemoto_(), cargarEstado_());
     var pendientes = [];
 
     (schedule.reminders || []).forEach(function (rem) {
@@ -147,7 +180,7 @@ function enviar() {
           var due = occ - lead;
           if (lead > 0 && ahora > occ) return;           // aviso previo ya no sirve
           if (ahora < due || ahora > due + WINDOW_MIN * 60000) return;
-          var key = rem.id + '|' + occ;
+          var key = rem.id + '|' + isoUtc(occ);
           if (estado[key]) return;
           pendientes.push({ key: key, rem: rem, occ: occ, due: due });
         });
