@@ -7,12 +7,13 @@ de que la PC esté encendida.
 | Cosa | Dónde |
 |---|---|
 | Repo (público) | https://github.com/Engelllop/recordatorios |
-| Workflow | `.github/workflows/recordatorios.yml` (cron cada 5 min) |
+| Runner primario | **Google Apps Script**, cada 5 min de verdad → [`apps-script/GUIA.md`](apps-script/GUIA.md) |
+| Workflow | `.github/workflows/recordatorios.yml` (cron cada 5 min, respaldo/manual) |
 | Horarios | `schedule.json` ← se edita ahí |
-| Lógica | `reminders.py` |
+| Lógica | `reminders.py` (GitHub) y `apps-script/Code.gs` (Apps Script) |
 | Bot | el mismo bot de Miki: token en `C:\dev\miki\.env` |
-| Secretos | `TELEGRAM_BOT_TOKEN` y `TELEGRAM_CHAT_ID` en el repo |
-| Estado anti-repetidos | `sent_state.json` (lo commitea el workflow) |
+| Secretos | `TELEGRAM_BOT_TOKEN` y `TELEGRAM_CHAT_ID` en el repo + propiedades del script |
+| Estado anti-repetidos | `sent_state.json` (GitHub) / propiedades del script (Apps Script) |
 
 ```
 schedule.json ──► GitHub Actions (cron */5) ──► bot de Telegram ──► celular
@@ -92,10 +93,14 @@ llega un mensaje de confirmación al Telegram.
 
 ## Límites y cuidados
 
-- **Cron cada 5 min, pero GitHub no es un reloj.** El planificador de Actions puede
-  demorar 1–15 min (más en horas pico). Para el entreno de las 05:00 la alarma del
-  teléfono es la que manda; el mensaje es el "qué toca hoy". El script igual manda
-  hasta 45 min tarde y lo marca como "aviso retrasado".
+- **El cron de GitHub Actions no es confiable: medido 10 corridas en 17 h con `*/5`.**
+  Por eso el runner primario es Google Apps Script ([`apps-script/GUIA.md`](apps-script/GUIA.md)),
+  que sí dispara cada 5 min. El workflow de GitHub queda como respaldo y para pruebas
+  manuales; no se usa para el horario fino.
+- **Ventana de 45 min:** si un trigger se demora, el aviso sale igual y se marca como
+  "aviso retrasado". Pasada la ventana se descarta (un aviso de las 05:00 a las 09:00
+  no sirve). Para el entreno de las 05:00 la alarma del teléfono sigue despertando; el
+  mensaje dice qué toca.
 - **El token es del bot de Miki.** No vive en el repo: está en los Secrets de GitHub
   y en `C:\dev\miki\.env`. No commitear `.env` en ningún repo.
 - **La bóveda manda.** `finanzas/vencimientos.md` es la fuente de los vencimientos:
