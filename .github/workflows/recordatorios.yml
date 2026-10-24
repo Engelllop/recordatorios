@@ -1,10 +1,12 @@
 name: Recordatorios por Telegram
 
 on:
-  schedule:
-    # Cada 5 minutos (UTC). El script decide qué toca según la hora de Costa Rica.
-    # Repo PÚBLICO: los minutos de Actions son ilimitados y el cron puede ser fino.
-    - cron: "*/5 * * * *"
+  # CRON DESACTIVADO el 2026-10-24. El planificador de GitHub Actions no es
+  # confiable: con `*/5` corrió 10 veces en 17 h. El runner real es Google Apps
+  # Script (apps-script/Code.gs, trigger cada 5 min). Este workflow queda solo
+  # para pruebas manuales con workflow_dispatch.
+  # schedule:
+  #   - cron: "*/5 * * * *"
   workflow_dispatch:
     inputs:
       prueba:

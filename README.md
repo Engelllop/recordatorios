@@ -8,7 +8,7 @@ de que la PC esté encendida.
 |---|---|
 | Repo (público) | https://github.com/Engelllop/recordatorios |
 | Runner primario | **Google Apps Script**, cada 5 min de verdad → [`apps-script/GUIA.md`](apps-script/GUIA.md) |
-| Workflow | `.github/workflows/recordatorios.yml` (cron cada 5 min, respaldo/manual) |
+| Workflow | `.github/workflows/recordatorios.yml` — solo manual (cron desactivado el 10/24) |
 | Horarios | `schedule.json` ← se edita ahí |
 | Lógica | `reminders.py` (GitHub) y `apps-script/Code.gs` (Apps Script) |
 | Bot | el mismo bot de Miki: token en `C:\dev\miki\.env` |
@@ -94,9 +94,9 @@ llega un mensaje de confirmación al Telegram.
 ## Límites y cuidados
 
 - **El cron de GitHub Actions no es confiable: medido 10 corridas en 17 h con `*/5`.**
-  Por eso el runner primario es Google Apps Script ([`apps-script/GUIA.md`](apps-script/GUIA.md)),
-  que sí dispara cada 5 min. El workflow de GitHub queda como respaldo y para pruebas
-  manuales; no se usa para el horario fino.
+  Se desactivó el 24/10/2026. El runner real es **Google Apps Script**
+  ([`apps-script/GUIA.md`](apps-script/GUIA.md)); el workflow queda solo para pruebas
+  manuales (`Run workflow`) y para versionar el código.
 - **Ventana de 45 min:** si un trigger se demora, el aviso sale igual y se marca como
   "aviso retrasado". Pasada la ventana se descarta (un aviso de las 05:00 a las 09:00
   no sirve). Para el entreno de las 05:00 la alarma del teléfono sigue despertando; el
