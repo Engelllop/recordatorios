@@ -164,8 +164,17 @@
       "active": true
     },
     {
+      "id": "estados-dia-1",
+      "text": "📥 Estados de cuenta: bajá BCR 4504/4680, BAC y MultiMoney del mes que cerró y actualizá la bóveda. Si falta alguno, anotá cuál.",
+      "type": "monthly",
+      "day": 1,
+      "time": "09:00",
+      "lead_minutes": 0,
+      "active": true
+    },
+    {
       "id": "revision-semanal",
-      "text": "🧠 Revisión semanal: actualizá finanzas/vencimientos.md, CONTEXT.md y SESSION.md. Lo que se olvida no existe.",
+      "text": "🧠 Revisión semanal: corré la frescura de la bóveda (frescura.py) y actualizá finanzas/vencimientos.md, CONTEXT.md y SESSION.md. Lo que se olvida no existe.",
       "type": "weekly",
       "days": ["sun"],
       "time": "20:00",

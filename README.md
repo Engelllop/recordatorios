@@ -25,7 +25,7 @@ schedule.json ──► GitHub Actions (cron */5) ──► bot de Telegram ─�
 días, horas y recordatorios genéricos. Los minutos de Actions de un repo público son
 ilimitados, y por eso el cron puede ser cada 5 min en vez de cada 30.
 
-## Qué está programado hoy (25 recordatorios)
+## Qué está programado hoy (26 recordatorios)
 
 **Rutina de ejercicio** (`rutinas/ejercicio.md`, domingo a jueves)
 
@@ -46,6 +46,7 @@ ilimitados, y por eso el cron puede ser cada 5 min en vez de cada 30.
 
 | Día | Hora | Qué |
 |---|---|---|
+| 1 | 09:00 | Estados de cuenta del mes que cerró → bajarlos y actualizar la bóveda |
 | 4 | 08:00 | Cargo fijo de la tarjeta titular (BAC-USD) |
 | 6 | 08:00 | Corte Visa BCR → bajar export |
 | 7 | 08:00 | Claro postpago |
@@ -55,9 +56,9 @@ ilimitados, y por eso el cron puede ser cada 5 min en vez de cada 30.
 | 30 | 08:00 | 2da quincena → barrer excedente al fondo |
 | último | 20:00 | Cierre de mes: anotar variable |
 
-**Otros**: revisión semanal de la bóveda (domingo 20:00), pendientes sin registro
-(sábado 24/10 09:00), UNED + cierres de diciembre (01/12) y tres cumpleaños
-(03/12, 01/01/2027 y 02/10/2027).
+**Otros**: revisión semanal de la bóveda (domingo 20:00; incluye el chequeo de
+frescura `frescura.py`), pendientes sin registro (sábado 24/10 09:00), UNED + cierres
+de diciembre (01/12) y tres cumpleaños (03/12, 01/01/2027 y 02/10/2027).
 
 ## Cómo cambiar un horario
 
@@ -118,6 +119,7 @@ $env:TELEGRAM_BOT_TOKEN = "..."; $env:TELEGRAM_CHAT_ID = "..."
 python reminders.py --test
 ```
 
-*Última actualización: 2026-10-23 — armado por DSH con los datos de la bóveda
+*Última actualización: 2026-10-24 — agregado el aviso de estados de cuenta (día 1) y
+la frescura en la revisión semanal. Armado por DSH con los datos de la bóveda
 (`rutinas/ejercicio.md`, `rutinas/ingles.md`, `finanzas/vencimientos.md`,
 `finanzas/presupuesto/2026-09_plan-ahorro.md`, `USER.md`).*
